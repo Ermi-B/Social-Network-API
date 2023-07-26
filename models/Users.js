@@ -31,6 +31,20 @@ userSchema.virtual('friendCount').get(function () {
     return this.friends.length;
   });
   
+  // Pre-remove hook to remove associated thoughts when a user is deleted
+userSchema.pre('remove', async function (next) {
+  try {
+    // Access the Thought model since 'this' refers to the user document being removed
+    const Thought = mongoose.model('Thought');
+
+    // Find all thoughts associated with the user and remove them
+    await Thought.deleteMany({ username: this.username });
+
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
   const User = mongoose.model('User', userSchema);
   
   module.exports = User;

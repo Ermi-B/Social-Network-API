@@ -2,4 +2,26 @@ GET http://localhost:3001/api/users
 
 ###
 
-GET http://localhost:3001/api/users/43
+GET http://localhost:3001/api/users/64c1a418ad6991ef92045dc8
+
+###
+
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+    "username":"zhumble",
+    "email":"zhumble@gmail.com"
+}
+
+###
+POST http://localhost:3001/api/thoughts
+Content-Type: application/json
+
+{
+    "thoughtText":"my thought",
+    "username":"zhumble"
+}
+###
+
+DELETE  http://localhost:3001/api/thoughts/64c1a7bfb73679368f8deda6
