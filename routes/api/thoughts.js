@@ -99,5 +99,69 @@ router.put('/:thoughtId', async (req, res) => {
     }
   });
   
+  router.post('/:thoughtId/reactions', async (req, res) => {
+    try {
+      const { thoughtId } = req.params;
+      const { reactionType, user } = req.body;
+  
+      // ... (validate and handle the request)
+  
+      // Add the reaction to the reactions array in the thought
+      const reaction = { reactionType, user };
+      const thought = await Thought.findByIdAndUpdate(
+        thoughtId,
+        { $push: { reactions: reaction } },
+        { new: true }
+      );
+  
+      if (!thought) {
+        return res.status(404).json({ error: 'Thought not found' });
+      }
+  
+      res.status(201).json(thought);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+  
+// DELETE route to remove a reaction from a thought
+router.delete('/:thoughtId/reactions/:reactionID', async (req, res) => {
+  try {
+    const { thoughtId,  reactionID } = req.params;
+
+    // Check if the thought exists
+    const thought = await Thought.findById(thoughtId);
+    if (!thought) {
+      return res.status(404).json({ error: 'Thought not found' });
+    }
+    
+    // Find the index of the reaction in the reactions array
+    
+    const reactionIndex = thought.reactions.findIndex(
+      
+      (reaction) => {
+        console.log(reaction.reactionId.toString(),reactionID )
+        return reaction.reactionId.toString() === reactionID
+        
+      }
+    );
+
+    // Check if the reaction exists in the thought
+    if (reactionIndex === -1) {
+      return res.status(404).json({ error: 'Reaction not found in the thought' });
+    }
+
+    // Remove the reaction from the reactions array
+    thought.reactions.splice(reactionIndex, 1);
+
+    // Save the updated thought with the removed reaction
+    const updatedThought = await thought.save();
+    res.status(200).json({message:'reaction removed successfully'});
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router;

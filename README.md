@@ -10,9 +10,17 @@
 - npm install: to install required packages.
 - npm start: to start the server
 - The following routes are avaiailable to interact with the API ( GET,POST,PUT,DELETE are availaible to perform CRUD operations)
-    - /api/users
-    - /api/users/:userId/friends/:friendId
-    - /api/thoughts
-    - /api/thoughts/:thoughtId/reactions
+    - GET POST PUT DELETE: /api/users
+    - POST /api/users/:userId/friends/:friendId
+    - GET /api/thoughts
+    - POST /api/thoughts/:thoughtId/reactions
+    - DELETE /api/thoughts/:thoughtId/reactions/:reactionId
+- Video demonstration : 
+## Credits
+- developed by Ermiyas Bekele
+- used MongoDB, node.js with express.js
+
+# Licenses
+- MIT License
 
 
