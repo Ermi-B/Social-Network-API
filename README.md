@@ -9,18 +9,20 @@
 ## Usage
 - npm install: to install required packages.
 - npm start: to start the server
-- The following routes are avaiailable to interact with the API ( GET,POST,PUT,DELETE are availaible to perform CRUD operations)
+- The following routes are available to interact with the API ( GET,POST,PUT,DELETE are availaible to perform CRUD operations)
     - GET POST PUT DELETE: /api/users
     - POST /api/users/:userId/friends/:friendId
     - GET /api/thoughts
     - POST /api/thoughts/:thoughtId/reactions
     - DELETE /api/thoughts/:thoughtId/reactions/:reactionId
-- Video demonstration : 
+
+- Video demonstration : https://drive.google.com/file/d/1AjCITrIDWQ8AaHN5UqSXwOkacMIptbZk/view
+- Git-Hub repo: https://github.com/Ermi-B/Social-Network-API
 ## Credits
 - developed by Ermiyas Bekele
 - used MongoDB, node.js with express.js
 
 # Licenses
 - MIT License
-
+  - Git-Hub repo: https://github.com/Ermi-B/Social-Network-API
 
